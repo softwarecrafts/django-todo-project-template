@@ -1,0 +1,27 @@
+{% verbatim %}
+{% extends "base.html" %}
+{% block page_title %}Task Detail: {{ task.name }}{% endblock page_title %}
+
+{% block main_content %}
+<dl>
+    <dt>Description:</dt>
+    <dd>{{ task.description }}</dd>
+    <dt>Project:</dt>
+    <dd>{{ task.project }}</dd>
+    <dt>Created at:</dt>
+    <dd>{{ task.created_at }}</dd>
+    <dt>Last Updated:</dt>
+    <dd>{{ task.updated_at }}</dd>
+    <dt>Due Date:</dt>
+    <dd>{{ task.due_date }}</dd>
+    <dt>Reported by:</dt>
+    <dd>{{ task.reported_by }}</dd>
+    <dt>Assigned to:</dt>
+    <dd>{{ task.assigned_to }}</dd>
+    {% if task.parent_task %}
+    <dt>Parent Task:</dt>
+    <dd>{{ task.parent_task }}</dd>
+    {% endif %}
+</dl>
+{% endblock main_content %}
+{% endverbatim %}

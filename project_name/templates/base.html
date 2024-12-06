@@ -1,0 +1,12 @@
+{% verbatim %}
+<html>
+    <head>
+        <title>{% block head_title %}My To Do List{% endblock head_title %}</title>
+        <link rel="stylesheet" href="{% static 'css/pico.min.css' %}" />
+    </head>
+    <body>
+        <h1>{% block page_title %}{% endblock page_title %}</h1>
+        <main>{% block main_content %} {% endblock main_content %}</main>
+    </body>
+</html>
+{% endverbatim %}

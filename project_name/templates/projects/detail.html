@@ -1,0 +1,36 @@
+{% verbatim %}
+{% extends "base.html" %}
+{% block page_title %}Project Detail: {{ project.name }}{% endblock page_title %}
+
+{% block main_content %}
+        <dl>
+            <dt>Description:</dt>
+            <dd>{{ project.description }}</dd>
+            <dt>Created at:</dt>
+            <dd>{{ project.created_at }}</dd>
+            <dt>Last Updated:</dt>
+            <dd>{{ project.updated_at }}</dd>
+            <dt>Created by:</dt>
+            <dd>{{ project.created_by }}</dd>
+        </dl>
+
+        <table>
+            <thead>
+                <tr><th>Task Name</th></tr>
+                <tr><th>Reported By</th></tr>
+                <tr><th>Assigned To</th></tr>
+                <tr><th>Due Date</th></tr>
+                <tr><th>Created</th></tr>
+            </thead>
+            <tbody>
+            {% for task in tasks %}
+                <tr><td><a href="{% url 'task_detail' task.pk %}">{{ task.name }}</a></td></tr>
+                <tr><td>{{ task.reported_by }}</td></tr>
+                <tr><td>{{ task.assigned_to }}</td></tr>
+                <tr><td>{{ task.due_date }}</td></tr>
+                <tr><td>{{ task.created_by }}</td></tr>
+            {% endfor %}
+            </tbody>
+        </table>
+{% endblock main_content %}
+{% endverbatim %}

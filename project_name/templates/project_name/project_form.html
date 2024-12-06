@@ -1,0 +1,17 @@
+{% verbatim %}
+{% extends "base.html" %}
+{% block page_title %}
+{% if object %}
+Update {{ object }}
+{% else %}
+New Project
+{% endif %}
+{% endblock page_title %}
+
+{% block main_content %}
+<form method="post">
+    {% csrf_token %}
+    {{ form }}
+</form>
+{% endblock main_content %}
+{% endverbatim %}

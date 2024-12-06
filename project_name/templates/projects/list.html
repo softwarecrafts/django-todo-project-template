@@ -1,0 +1,13 @@
+{% verbatim %}
+{% extends "base.html" %}
+{% block page_title %}Project List{% endblock page_title %}
+
+{% block main_content %}
+<dl>
+    {% for project in projects %}
+        <dt><a href="{% url 'project_detail' project.pk %}">{{ project.name }}</a></dt>
+        <dd>{{ project.description }}</dd>
+    {% endfor %}
+</dl>
+{% endblock main_content %}
+{% endverbatim %}
