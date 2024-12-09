@@ -1,12 +1,47 @@
-{% verbatim %}
-<html>
+{% load static %}
+<!doctype html>
+<html lang="en">
     <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="color-scheme" content="light dark" />
         <title>{% block head_title %}My To Do List{% endblock head_title %}</title>
         <link rel="stylesheet" href="{% static 'css/pico.min.css' %}" />
     </head>
     <body>
-        <h1>{% block page_title %}{% endblock page_title %}</h1>
-        <main>{% block main_content %} {% endblock main_content %}</main>
+        <header class="container">
+            <nav>
+                <ul>
+                    <li><strong>Todo Examples</strong></li>
+                </ul>
+                <ul>
+                    <li><a href="{% url 'project_list' %}">My Projects</a></li>
+                    <!-- <li><a href="">My Tasks</a></li> -->
+                    <li><a href="{% url 'project_create' %}">Create Project</a></li>
+                    <li><a href="{% url 'task_create' %}">Create Task</a></li>
+                    {% if user.is_authenticated %}
+
+                    <li>
+                        <form action="{% url 'logout' %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit">Log out</button>
+                        </form>
+                    </li>
+
+                    {% else %}
+                    <li><a href="{% url 'register' %}">Register</a></li>
+                    <li><a href="{% url 'login' %}">Log in</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </header>
+
+        <main class="container-fluid">
+            <div class="grid">
+                <h1>{% block page_title %}{% endblock page_title %}</h1>
+                {% block page_buttons %}{% endblock page_buttons %}
+            </div>
+            {% block main_content %} {% endblock main_content %}
+        </main>
     </body>
 </html>
-{% endverbatim %}

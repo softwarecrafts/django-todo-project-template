@@ -1,8 +1,8 @@
-{% verbatim %}
 {% extends "base.html" %}
 {% block page_title %}Task Detail: {{ task.name }}{% endblock page_title %}
 
 {% block main_content %}
+<a href="{% url 'task_update' task.pk %}">Edit Task</a>
 <dl>
     <dt>Description:</dt>
     <dd>{{ task.description }}</dd>
@@ -24,4 +24,3 @@
     {% endif %}
 </dl>
 {% endblock main_content %}
-{% endverbatim %}

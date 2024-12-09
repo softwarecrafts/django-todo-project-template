@@ -1,4 +1,3 @@
-{% verbatim %}
 {% extends "base.html" %}
 {% block page_title %}
 {% if object %}
@@ -12,6 +11,10 @@ New Task
 <form method="post">
     {% csrf_token %}
     {{ form }}
+    {% if object %}
+    <input type="submit" value="Update Task"/>
+    {% else %}
+    <input type="submit" value="Create Task"/>
+    {% endif %}
 </form>
 {% endblock main_content %}
-{% endverbatim %}

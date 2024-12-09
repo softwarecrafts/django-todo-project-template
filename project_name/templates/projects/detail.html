@@ -1,6 +1,13 @@
-{% verbatim %}
 {% extends "base.html" %}
 {% block page_title %}Project Detail: {{ project.name }}{% endblock page_title %}
+
+{% block page_buttons %}
+<form action="{% url 'project_delete' project.pk %}" method="post">
+    {% csrf_token %}
+    <button class="outline contrast" type="submit">Delete Project</button>
+</form>
+
+{% endblock page_buttons %}
 
 {% block main_content %}
         <dl>
@@ -14,23 +21,35 @@
             <dd>{{ project.created_by }}</dd>
         </dl>
 
+        <a href="{% url 'project_update' project.pk %}">Edit Project</a>
+        <a href="{% url 'task_create' %}">Create a Task</a>
         <table>
             <thead>
-                <tr><th>Task Name</th></tr>
-                <tr><th>Reported By</th></tr>
-                <tr><th>Assigned To</th></tr>
-                <tr><th>Due Date</th></tr>
-                <tr><th>Created</th></tr>
+                <tr>
+                    <th>Task Name</th>
+                    <th>Reported By</th>
+                    <th>Assigned To</th>
+                    <th>Due Date</th>
+                    <th>Created</th>
+                    <th></th>
+                </tr>
             </thead>
             <tbody>
-            {% for task in tasks %}
-                <tr><td><a href="{% url 'task_detail' task.pk %}">{{ task.name }}</a></td></tr>
-                <tr><td>{{ task.reported_by }}</td></tr>
-                <tr><td>{{ task.assigned_to }}</td></tr>
-                <tr><td>{{ task.due_date }}</td></tr>
-                <tr><td>{{ task.created_by }}</td></tr>
-            {% endfor %}
+                {% for task in tasks %}
+                    <tr>
+                        <td><a href="{% url 'task_detail' task.pk %}">{{ task.name }}</a></td>
+                        <td>{{ task.reported_by }}</td>
+                        <td>{{ task.assigned_to }}</td>
+                        <td>{{ task.due_date }}</td>
+                        <td>{{ task.created_at }}</td>
+                        <td>
+                            <form action="{% url 'task_delete' task.pk %}" method="post">
+                                {% csrf_token %}
+                                <button class="contrast" type="submit">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
             </tbody>
         </table>
 {% endblock main_content %}
-{% endverbatim %}
