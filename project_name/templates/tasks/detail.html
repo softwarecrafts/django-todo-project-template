@@ -1,8 +1,18 @@
 {% extends "base.html" %}
 {% block page_title %}Task Detail: {{ task.name }}{% endblock page_title %}
 
+{% block page_buttons %}
+<form action="{% url 'task_delete' task.pk %}" method="post">
+    {% csrf_token %}
+    <button class="outline contrast" type="submit">Delete Task</button>
+    <a role="button" href="{% url 'task_update' task.pk %}">Edit Task</a>
+    <!-- this could be create subtask -->
+    <!--<a role="button" class="secondary" href="{% url 'task_create' %}">Create a Task</a>-->
+</form>
+
+{% endblock page_buttons %}
 {% block main_content %}
-<a href="{% url 'task_update' task.pk %}">Edit Task</a>
+
 <dl>
     <dt>Description:</dt>
     <dd>{{ task.description }}</dd>

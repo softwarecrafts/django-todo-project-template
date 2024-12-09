@@ -39,7 +39,7 @@
         <main class="container-fluid">
             <div class="grid">
                 <h1>{% block page_title %}{% endblock page_title %}</h1>
-                {% block page_buttons %}{% endblock page_buttons %}
+                <div role="group">{% block page_buttons %}{% endblock page_buttons %}</div>
             </div>
             {% block main_content %} {% endblock main_content %}
         </main>

@@ -5,7 +5,10 @@
 <form action="{% url 'project_delete' project.pk %}" method="post">
     {% csrf_token %}
     <button class="outline contrast" type="submit">Delete Project</button>
+    <a role="button" class="secondary" href="{% url 'project_update' project.pk %}">Edit Project</a>
+    <a role="button" href="{% url 'task_create' %}">Create a Task</a>
 </form>
+
 
 {% endblock page_buttons %}
 
@@ -21,8 +24,7 @@
             <dd>{{ project.created_by }}</dd>
         </dl>
 
-        <a href="{% url 'project_update' project.pk %}">Edit Project</a>
-        <a href="{% url 'task_create' %}">Create a Task</a>
+
         <table>
             <thead>
                 <tr>
