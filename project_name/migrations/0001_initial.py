@@ -72,7 +72,7 @@ class Migration(migrations.Migration):
                         null=True,
                         on_delete=django.db.models.deletion.CASCADE,
                         related_name="sub_tasks",
-                        to="todo_test.task",
+                        to="{{ project_name }}.task",
                     ),
                 ),
                 (
@@ -80,7 +80,7 @@ class Migration(migrations.Migration):
                     models.ForeignKey(
                         on_delete=django.db.models.deletion.CASCADE,
                         related_name="tasks",
-                        to="todo_test.project",
+                        to="{{ project_name }}.project",
                     ),
                 ),
                 (
